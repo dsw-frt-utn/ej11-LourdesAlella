@@ -17,27 +17,24 @@ public class CasoDictionary
         _alumnos = new Dictionary<int, Alumno>(); 
     }
 
-    public bool AgregarAlumno(Alumno alumno) //ver condiciones
+    public bool AgregarAlumno(Alumno alumno)
     {
         if (!_alumnos.ContainsKey(alumno.Id))
         {
             _alumnos.Add(alumno.Id, alumno);
             return true;
-            /*Console.WriteLine($"Alumno {alumno.Id} agregado exitosamente.");}
-        else
-        {   Console.WriteLine($"Ya existe un alumno con legajo: {alumno.Id}");*/
         }
             return false;
     }
 
     public Alumno? BuscarAlumno(int legajo)
     {
-        if (_alumnos.TryGetValue(legajo, out Alumno alumnoEncontrado))
+        if (_alumnos.TryGetValue(legajo, out Alumno? alumnoEncontrado))
         {
             return alumnoEncontrado;
         }
-        //else {Console.WriteLine($"Alumno {legajo} no encontrado.");}
         return null;
+        //return _alumnos.GetValueOrDefault(legajo);
     }
 
     public Dictionary<int, Alumno> RetornarDiccionario()
@@ -47,16 +44,6 @@ public class CasoDictionary
 
     public bool EliminarAlumno(int legajo)
     {
-        /*bool salida = _alumnos.Remove(legajo);
-
-        if (salida == true)
-        {
-            Console.WriteLine($"Alumno {legajo} eliminado exitosamente.");
-        }
-        else
-        {
-            Console.WriteLine($"No existe un alumno con legajo: {legajo}");
-        }*/
         return _alumnos.Remove(legajo);
     }
 }
